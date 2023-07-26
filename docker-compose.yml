@@ -1,0 +1,28 @@
+version: '3'
+services:
+  core:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    domainname: core
+    container_name: core
+    ports:
+      - "8080:8080"
+    restart: always
+    networks:
+      - some-net
+    depends_on:
+      - postgres
+  postgres:
+    image: 'postgres:latest'
+    container_name: postgres
+    environment:
+      POSTGRES_DB: some_db
+      POSTGRES_USER: some_user
+      POSTGRES_PASSWORD: some_password
+    ports:
+      - "5432:5432"
+    networks:
+      - some-net
+networks:
+  some-net:
