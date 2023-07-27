@@ -10,7 +10,7 @@ services:
       - "8080:8080"
     restart: always
     networks:
-      - some-net
+      - host
     depends_on:
       - postgres
   postgres:
@@ -23,6 +23,6 @@ services:
     ports:
       - "5432:5432"
     networks:
-      - some-net
+      - host
 networks:
-  some-net:
+  host:
